@@ -1,8 +1,8 @@
 /*
 
-* Programa: Agenda TelefÙnica
-* Data de CriaÁ„o: 20/11/2017
-* Criado por: Luiz Gustavo Nunes
+* Programa: Agenda Telef√¥nica
+* Data de Cria√ß√£o: 20/11/2017
+* Criado por: Luis Gabriel Kingeski
 
 */
 
@@ -14,7 +14,7 @@
 #include <locale.h> // Biblioteca para usar o setlocale.
 #include <windows.h> // Biblioteca para usar o SetConsoleTitle.
 
-// DeclaraÁ„o da estrutura: 
+// Declara√ß√£o da estrutura: 
 typedef struct agenda
 {
     char nome[50];
@@ -23,16 +23,16 @@ typedef struct agenda
     int dia,mes,ano;
 }agenda;
 
-// Vari·veis Globais:
+// Vari√°veis Globais:
 FILE *arq;
 agenda contato;
 
-// FunÁ„o menu, apresentando as opÁıes ao usu·rio:
+// Fun√ß√£o menu, apresentando as op√ß√µes ao usu√°rio:
 char menu()
 {
     system("cls");
 	printf("**************************************************************************\n");
-    printf("**                       = Agenda TelefÙnica 1.0 =                      **\n");
+    printf("**                       = Agenda Telef√¥nica 1.0 =                      **\n");
     printf("**************************************************************************\n");
     printf("**                  [1]  Adicionar um novo contato. [1]                 **\n");                             
     printf("**                  [2]  Mostrar lista de contatos. [2]                 **\n");
@@ -46,7 +46,7 @@ char menu()
     return (toupper(getche()));
 }
 
-// FunÁ„o que verifica se no arquivo "agenda.dad", j· existe nome do contato, retornando 1:
+// Fun√ß√£o que verifica se no arquivo "agenda.dad", j√° existe nome do contato, retornando 1:
 int verifica(char nome[])
 {
     fread(&contato,sizeof(agenda),1,arq);
@@ -64,7 +64,7 @@ int verifica(char nome[])
     return 0;
 }
 
-// FunÁ„o para adicionar contatos na agenda:
+// Fun√ß√£o para adicionar contatos na agenda:
 void adicionar()
 {
     char nome[50];
@@ -84,7 +84,7 @@ void adicionar()
     if (verifica(nome) == 1)
     {
 
-        printf("\nNome j· existente.\n");
+        printf("\nNome j√° existente.\n");
     }
     else
     {
@@ -98,7 +98,7 @@ void adicionar()
     fclose(arq);
 }
 
-// FunÁ„o para editar um contato:
+// Fun√ß√£o para editar um contato:
 void modificar()
 {
     char nome[50];
@@ -121,7 +121,7 @@ void modificar()
         fflush(stdin);
         gets(nome);
         strcpy(contato.nome,nome);
-        printf("\nDigite um novo n˙mero de telefone: ");
+        printf("\nDigite um novo n√∫mero de telefone: ");
         scanf("%d", &contato.telefone);
         printf("\nDigite uma nova data de nascimento: ");
         scanf("%d/%d/%d", &contato.dia, &contato.mes, &contato.ano);
@@ -136,7 +136,7 @@ void modificar()
     fclose(arq);
 }
 
-// FunÁ„o para remover um contato:
+// Fun√ß√£o para remover um contato:
 void remover()
 {
     char nome[50];
@@ -163,9 +163,9 @@ void remover()
         if (strcmp(contato.nome,nome) != 0) // Compara o nome.
         
         {
-           fwrite(&contato,sizeof(agenda),1,tmp); // Grava no arquivo tempor·rio.
+           fwrite(&contato,sizeof(agenda),1,tmp); // Grava no arquivo tempor√°rio.
         }
-        fread(&contato,sizeof(agenda),1,arq); // LÍ o arquivo.
+        fread(&contato,sizeof(agenda),1,arq); // L√™ o arquivo.
 
     }
     fclose(arq);
@@ -175,7 +175,7 @@ void remover()
     system("ren agenda.txt agenda.dad");
 }
 
-// FunÁ„o para procurar um contato pelo nome:
+// Fun√ß√£o para procurar um contato pelo nome:
 void buscar()
 {
     char nome[50];
@@ -206,13 +206,13 @@ void buscar()
 
     else
     {
-        printf("\nContato n„o existe.\n");
+        printf("\nContato n√£o existe.\n");
     }
 
     fclose(arq);
 }
 
-// FunÁ„o que lista os contatos: 
+// Fun√ß√£o que lista os contatos: 
 void listar()
 {
     arq = fopen("Agenda.dad","r+b");
@@ -238,11 +238,11 @@ void listar()
     fclose(arq);
 }
 
-// FunÁ„o Principal:
+// Fun√ß√£o Principal:
 int main()
 {
     
-    setlocale(LC_ALL, "Portuguese"); // Comando de regionalizaÁ„o.
+    setlocale(LC_ALL, "Portuguese"); // Comando de regionaliza√ß√£o.
   
     SetConsoleTitle("Agenda Telefonica"); // Permite nomear a janela do programa.
     
